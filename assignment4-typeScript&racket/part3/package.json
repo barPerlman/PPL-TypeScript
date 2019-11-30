@@ -1,0 +1,21 @@
+{
+  "name": "hw4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/ramda": "^0.26.3",
+    "deep-equal": "^1.0.1",
+    "ramda": "^0.26.1",
+    "s-expression": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^11.13.13"
+  }
+}

@@ -1,0 +1,80 @@
+(define empty?
+   (lambda (lst)
+      (if (or (eq? '() lst) 
+              (eq? (list) lst))
+         #t
+         #f
+      )
+   )   
+)
+
+(define list?
+   (lambda (lst)
+      (if (pair? lst)
+         (list? (cdr lst))
+         (empty? lst)
+      )
+   )   
+)
+
+(define equal-list?
+   (lambda (lst1 lst2)
+      (if (not (and (list? lst1) 
+                    (list? lst2)))
+         #f
+         (if (not (or (empty? lst1) (empty? lst2)))
+            (if (or (eq? (car lst1) (car lst2)) 
+                    (equal-list? (car lst1) (car lst2)))
+               (equal-list? (cdr lst1) (cdr lst2))
+                 #f
+            )
+            (if (or (and (empty? lst1) 
+                         (not (empty? lst2))) 
+                    (and (empty? lst2) 
+                         (not (empty? lst1))))
+               #f
+               #t
+            )
+         )
+      ) 
+   )
+)   
+
+(define append
+  (lambda (lst1 lst2) 
+      (if (empty? lst1)
+          lst2
+          (cons (car lst1) (append (cdr lst1) lst2))
+      )
+   )
+)
+
+(define append3
+  (lambda (lst1 lst2 num)
+    (append lst1 (append lst2 (cons num '())))
+   )
+)
+
+(define pascal
+   (lambda (n)
+      (tempRowPascal (- n 1) 0)
+   )
+)
+
+(define tempRowPascal
+   (lambda (n k)
+      (if (< k n)
+         (append (list (nCk n k)) (tempRowPascal n (+ k 1)))
+         '(1)
+      )
+   )
+)
+
+(define nCk
+   (lambda (n k)
+      (if (= 0 k)
+         1
+         (/ (* n (nCk (- n 1) (- k 1))) k)
+      )
+   )
+)
